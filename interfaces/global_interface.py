@@ -14,3 +14,4 @@ class GlobalInterface(Interface):
         self.sub_interfaces = {
             "builtin": BuiltinInterface(self, self.app)
         }
+        self.is_top_level = True

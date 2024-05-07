@@ -17,11 +17,16 @@ class ExecutableCommand:
         self.interface_tree: list = interface_tree
         self.name = name
         self.data = data
+        self.removed_interface_tree = []
 
     def layer_down(self) -> str:
         this_layer = self.interface_tree[0]
+        self.removed_interface_tree.append(this_layer)
         self.interface_tree = self.interface_tree[1:]
         return this_layer
+
+    def layer_up(self):
+        self.interface_tree.insert(0, self.removed_interface_tree.pop())
 
 
 class FormalCommand:

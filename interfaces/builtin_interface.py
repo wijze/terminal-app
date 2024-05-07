@@ -9,7 +9,7 @@ from time import sleep
 
 class BuiltinInterface(Interface):
     def define_vars(self):
-        self.name = "test"
+        self.name = "builtin"
         self.is_global = True
         self.sub_interfaces = {
             "test": TestInterface(self, self.app),
