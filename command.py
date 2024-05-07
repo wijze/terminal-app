@@ -64,6 +64,9 @@ def parse_inp(inp_str: str) -> ExecutableCommandData:
     command = parts[0]
     parts = parts[1:]
 
+    for i in range(len(parts)):
+        parts[i] = parts[i].replace("!S", " ")
+
     named_arg = ""
     for p in parts:
         if named_arg != "":
@@ -105,7 +108,7 @@ def get_interface_tree(command: ExecutableCommandData):
 def get_args(ran_command: ExecutableCommand, formal_command: FormalCommand) -> dict:
     args = {}
     for arg in formal_command.args:
-        found_arg = ""
+        found_arg = "!NO_ARG"
         if arg.name in ran_command.data.named_args:
             found_arg = ran_command.data.named_args[arg.name]
         elif arg.unnamed_index < len(ran_command.data.unnamed_args):
@@ -113,7 +116,7 @@ def get_args(ran_command: ExecutableCommand, formal_command: FormalCommand) -> d
         elif arg.optional:
             found_arg = arg.default
 
-        if found_arg:
+        if found_arg != "!NO_ARG":
             match arg.type:
                 case ArgumentType.STRING:
                     pass

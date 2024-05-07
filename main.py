@@ -18,6 +18,8 @@ class App:
             self.enter_command(current_inp)
 
     def enter_command(self, inp):
+        if inp == "":
+            return
         inp_command_data = parse_inp(inp)
         inp_command_interface_tree, inp_command_name = get_interface_tree(inp_command_data)
         inp_command = ExecutableCommand(inp_command_interface_tree, inp_command_name, inp_command_data)
