@@ -1,6 +1,8 @@
 from interfaces.inteface import Interface
 from command import FormalCommand, FormalArgument, ArgumentType
+
 from interfaces.test_interface import TestInterface
+from interfaces.datetime_interface import DatetimeInterface
 
 from time import sleep
 
@@ -10,7 +12,8 @@ class BuiltinInterface(Interface):
         self.name = "test"
         self.is_global = True
         self.sub_interfaces = {
-            "test": TestInterface(self, self.app)
+            "test": TestInterface(self, self.app),
+            "datetime": DatetimeInterface(self, self.app)
         }
         self.commands = {
             "exit": FormalCommand("exit", self.exit, [
